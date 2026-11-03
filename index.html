@@ -63,17 +63,17 @@ h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text
 .hero .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* barre du bas : glissante au doigt */
-.seg{position:fixed;z-index:30;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(94vw,520px);display:grid;grid-template-columns:repeat(3,1fr);padding:5px;border-radius:99px;
+.seg{position:fixed;z-index:30;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(94vw,520px);display:grid;grid-template-columns:repeat(4,1fr);padding:5px;border-radius:99px;
   background:#150e28;border:1px solid var(--bd2);box-shadow:0 10px 36px rgba(0,0,0,.55);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
 .seg.drag{cursor:grabbing}
-.seg .thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/3);border-radius:99px;pointer-events:none;background:var(--grad);box-shadow:0 6px 20px var(--glow);
+.seg .thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/4);border-radius:99px;pointer-events:none;background:var(--grad);box-shadow:0 6px 20px var(--glow);
   transform:translateX(calc(var(--i,0)*100%));transition:transform .45s var(--spring),scale .25s var(--ease)}
 .seg.drag .thumb{transition:transform 0s,scale .25s var(--ease);scale:1.06 1.12}
 .seg button{position:relative;z-index:1;padding:10px 4px;border:0;background:none;color:var(--mut);font:600 .76rem var(--sans);cursor:inherit;border-radius:99px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .25s;pointer-events:none}
 .seg button[aria-selected="true"]{color:#fff}
 .seg svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--spring)}
 .seg button[aria-selected="true"] svg{transform:scale(1.12)}
-@media (min-width:700px){.seg{width:min(80vw,600px);padding:6px}.seg .thumb{top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/3)}.seg button{padding:12px 6px;font-size:.88rem}.seg svg{width:26px;height:26px}}
+@media (min-width:700px){.seg{width:min(80vw,600px);padding:6px}.seg .thumb{top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/4)}.seg button{padding:12px 6px;font-size:.88rem}.seg svg{width:26px;height:26px}}
 
 /* panneaux + transition entre sections */
 .panel{display:none}
@@ -285,6 +285,30 @@ html.noanim .bg i,html.noanim #stars{display:none}
 header{background:linear-gradient(160deg,#261848,#130b27)}
 .bg i{opacity:1}
 
+/* ===== transcription audio ===== */
+.tmic{display:grid;justify-items:center;gap:6px;padding:22px 0 6px}
+.recbtn{--lv:0;position:relative;width:92px;height:92px;border-radius:50%;border:0;cursor:pointer;color:#fff;display:grid;place-items:center;background:linear-gradient(135deg,var(--a1),var(--a2));
+  box-shadow:0 10px 34px var(--glow),0 0 0 calc(6px + var(--lv)*22px) rgba(167,139,250,.16);transition:transform .25s var(--spring),box-shadow .12s}
+.recbtn svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.recbtn:active{transform:scale(.93)}
+.recbtn.on{background:linear-gradient(135deg,#ef4444,#f43f5e);box-shadow:0 10px 34px rgba(239,68,68,.55),0 0 0 calc(6px + var(--lv)*26px) rgba(244,63,94,.22);animation:recp2 1.4s ease-in-out infinite}
+@keyframes recp2{50%{transform:scale(1.05)}}
+.ttime{font:700 1.8rem var(--mono);letter-spacing:.04em}
+.thint{color:var(--mut);font-size:.85rem}
+.dropz{display:grid;justify-items:center;gap:4px;margin-top:16px;padding:26px 16px;border-radius:18px;border:2px dashed var(--bd2);background:var(--s2);color:var(--mut);cursor:pointer;text-align:center;transition:border-color .2s,background .2s,box-shadow .2s}
+.dropz svg{width:34px;height:34px;fill:none;stroke:var(--a2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dropz b{color:#fff}.dropz:hover,.dropz.over{border-color:var(--a2);background:var(--s3);box-shadow:0 0 30px -6px var(--glow)}
+.tinfo{margin-top:12px;font-size:.85rem;color:var(--mut)}
+#tplayer{width:100%;margin-top:12px;border-radius:14px;color-scheme:dark}
+.tprog{margin-top:16px}.tprog .bar{height:8px;border-radius:99px;background:#33274f;overflow:hidden}
+.tprog .bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--a1),var(--a2));box-shadow:0 0 14px var(--glow);transition:width .3s}
+.tprog .bar.ind i{width:40%;animation:ind 1.2s ease-in-out infinite}
+@keyframes ind{0%{margin-left:-40%}100%{margin-left:100%}}
+.tprog .msg{margin-top:8px;font-size:.88rem;color:var(--mut)}.tprog .msg.err{color:#fca5a5}
+@media (max-width:420px){.seg button{font-size:.68rem}}
+.hi .ic.t{background:linear-gradient(135deg,#f43f5e,#a855f7)}
+html{scroll-padding-bottom:120px}.btn,.card,.recbtn,.mseg,.dropz,select{scroll-margin-bottom:120px}
+
 </style>
 </head>
 <body>
@@ -399,6 +423,60 @@ header{background:linear-gradient(160deg,#261848,#130b27)}
     </div>
   </section>
 
+  <!-- ===== TRANSCRIRE ===== -->
+  <section class="panel" id="p-transcrire">
+    <h2 class="hero"><span class="w" style="--w:0">Votre</span> <span class="w" style="--w:1">voix,</span> <span class="w g" style="--w:2">en</span> <span class="w g" style="--w:3">texte.</span></h2>
+    <div class="card">
+      <h2>Source audio</h2>
+      <p class="hint">Dictez au micro ou importez un enregistrement (mp3, m4a, wav, ogg, mp4…). Le mode « Précis » utilise Whisper directement dans votre navigateur : l'audio n'est envoyé nulle part.</p>
+      <div class="row">
+        <div class="mseg" id="tsrc" style="--n:2;--i:0"><i class="mt"></i><button type="button" data-v="mic" class="on">Micro</button><button type="button" data-v="file">Fichier audio</button></div>
+        <div class="mseg" id="teng" style="--n:2;--i:1"><i class="mt"></i><button type="button" data-v="instant">Instantané</button><button type="button" data-v="whisper" class="on">Précis (Whisper)</button></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <select id="tlang" style="width:auto;min-width:150px" aria-label="Langue parlée"><option value="fr">Français</option><option value="en">English</option><option value="auto">Détection auto</option></select>
+        <select id="tmodel" style="width:auto;min-width:230px" aria-label="Modèle"><option value="Xenova/whisper-tiny">Tiny · ≈ 40 Mo · rapide</option><option value="Xenova/whisper-base" selected>Base · ≈ 75 Mo · recommandé</option><option value="Xenova/whisper-small">Small · ≈ 250 Mo · très précis, lent</option></select>
+      </div>
+
+      <div class="tmic" id="tmicbox">
+        <button class="recbtn" id="trec" type="button" aria-label="Démarrer ou arrêter l'enregistrement"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg></button>
+        <div class="ttime" id="ttime">00:00</div>
+        <div class="thint" id="tstate">Appuyez pour enregistrer</div>
+      </div>
+
+      <div id="tfilebox" hidden>
+        <label class="dropz" for="tfile" id="tdrop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg><b>Déposez un fichier audio ici</b><span>ou touchez pour en choisir un</span></label>
+        <input type="file" id="tfile" accept="audio/*,video/*,.m4a,.mp3,.wav,.ogg,.opus,.webm,.mp4,.aac,.flac" hidden>
+      </div>
+      <div class="tinfo" id="tinfo" hidden></div>
+      <audio id="tplayer" controls hidden></audio>
+
+      <div class="tprog" id="tprog" hidden><div class="bar"><i id="tbar"></i></div><div class="msg" id="tmsg"></div></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn pri" id="tgo" type="button" hidden>Transcrire</button>
+        <button class="btn" id="tcancel" type="button" hidden>Annuler</button>
+      </div>
+      <p class="note">Première utilisation du mode « Précis » : le modèle se télécharge une fois (connexion requise), puis fonctionne hors ligne. Le mode « Instantané » utilise le service vocal de votre navigateur (Chrome, Edge, Safari) et peut envoyer l'audio à son éditeur.</p>
+    </div>
+
+    <div class="card" id="tres" hidden>
+      <div class="row" style="margin-bottom:12px">
+        <h2 style="margin:0">Transcription <span class="badge" id="tbadge"></span></h2>
+        <span class="spacer"></span>
+        <button class="btn sm" id="tcopy" type="button">Copier</button>
+        <button class="btn sm" id="tcorr" type="button">Corriger →</button>
+      </div>
+      <textarea id="tout" placeholder="Le texte apparaît ici…" spellcheck="true" style="min-height:230px"></textarea>
+      <div class="row" style="margin-top:12px">
+        <label class="chk">Horodatage <input type="checkbox" id="tts"></label>
+        <span class="spacer"></span>
+        <button class="btn sm" id="ttxt" type="button">.txt</button>
+        <button class="btn sm" id="tsrt" type="button">.srt</button>
+        <button class="btn sm dng" id="tclear" type="button">Effacer</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== HISTORIQUE ===== -->
   <section class="panel" id="p-historique">
     <h2 class="hero"><span class="w" style="--w:0">Tout</span> <span class="w" style="--w:1">ce</span> <span class="w" style="--w:2">que</span> <span class="w" style="--w:3">vous</span> <span class="w g" style="--w:4">avez</span> <span class="w g" style="--w:5">fait.</span></h2>
@@ -412,6 +490,7 @@ header{background:linear-gradient(160deg,#261848,#130b27)}
         <button class="cat on" data-f="" type="button">Tout</button>
         <button class="cat" data-f="g" type="button">Générations</button>
         <button class="cat" data-f="c" type="button">Corrections</button>
+        <button class="cat" data-f="t" type="button">Transcriptions</button>
       </div>
       <input type="search" id="hfilter" placeholder="Rechercher dans l'historique…" aria-label="Rechercher">
       <div id="hdeny" class="empty" hidden>
@@ -444,6 +523,7 @@ header{background:linear-gradient(160deg,#261848,#130b27)}
   <i class="thumb"></i>
   <button role="tab" aria-selected="true" data-t="generer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Générer</button>
   <button role="tab" aria-selected="false" data-t="corriger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h10M5 9h7M5 13h5"/><path d="M13 17l2.5 2.5L21 13"/></svg>Corriger</button>
+  <button role="tab" aria-selected="false" data-t="transcrire"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>Transcrire</button>
   <button role="tab" aria-selected="false" data-t="historique"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 4.5v4h4"/><path d="M12 7.5V12l3 2"/></svg>Historique</button>
 </nav>
 
@@ -477,6 +557,7 @@ header{background:linear-gradient(160deg,#261848,#130b27)}
       <li><b>Stockage local (localStorage).</b> Avec votre accord uniquement : historique des générations et corrections, brouillons de saisie, réglages (taille du texte, options). Ces données restent dans votre navigateur et ne sont jamais transmises à l'éditeur. Votre choix (accepter / refuser) est lui-même mémorisé localement ; ce stockage strictement nécessaire ne requiert pas de consentement.</li>
       <li><b>Contrôle.</b> Vous pouvez supprimer chaque entrée ou tout l'historique depuis l'onglet « Historique », modifier votre choix via « Gérer mes préférences », ou vider les données du site dans votre navigateur. Un refus supprime immédiatement les données enregistrées.</li>
       <li><b>Générateur de fautes.</b> Il fonctionne entièrement dans votre navigateur ; les mots saisis ne sont pas envoyés.</li>
+      <li><b>Transcription audio.</b> Le mode « Précis » télécharge une fois le moteur Whisper (jsDelivr) et le modèle (Hugging Face), puis transcrit localement : l'audio n'est pas transmis. Le mode « Instantané » s'appuie sur le service de reconnaissance vocale de votre navigateur, qui peut envoyer l'audio à son éditeur selon sa propre politique.</li>
       <li><b>Correcteur.</b> Si l'option « Correction en ligne » est activée, le texte à corriger est envoyé, au moment où vous cliquez sur « Corriger », à l'API publique LanguageTool (api.languagetool.org), qui le traite selon <a href="https://languagetool.org/legal/privacy" target="_blank" rel="noopener">sa propre politique de confidentialité</a>. Ne saisissez pas de données sensibles dans ce mode. Désactivée, la correction reste locale.</li>
       <li><b>Vos droits.</b> Pour toute question ou demande relative à vos données (accès, effacement…), écrivez à <a href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a>.</li>
     </ul>
@@ -1213,7 +1294,7 @@ if (typeof module !== 'undefined') module.exports = TWFix;
   }
 
   /* ================= ONGLETS : barre du bas glissante (doigt, stylet, souris) ================= */
-  const TABS = ['generer', 'corriger', 'historique'];
+  const TABS = ['generer', 'corriger', 'transcrire', 'historique'];
   const S = { pal: 'aurore', anim: true, haptic: true, scroll: true, kb: 'azerty', live: false };
   const sysReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let reduce = sysReduce;
@@ -1223,7 +1304,7 @@ if (typeof module !== 'undefined') module.exports = TWFix;
     tabsEl.style.setProperty('--i', i);
     tabsEl.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-selected', k === i));
     TABS.forEach((n, k) => $('p-' + n).classList.toggle('on', k === i));
-    if (i === 2) renderHistory();
+    if (TABS[i] === 'historique') renderHistory();
   }
   function showTab(t, push) {
     let i = typeof t === 'number' ? t : TABS.indexOf(t);
@@ -1331,10 +1412,14 @@ if (typeof module !== 'undefined') module.exports = TWFix;
     $('hempty').textContent = H.load().length ? 'Aucun résultat.' : 'Rien pour l\'instant : vos générations et corrections apparaîtront ici.';
     $('hlist').innerHTML = list.map(e => {
       const when = new Date(e.ts).toLocaleString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-      const body = e.k === 'g'
+      const body = e.k === 't'
+        ? '<p>' + esc((e.b || '').slice(0, 220)) + '<small>🎙 ' + esc(e.a || 'Transcription') + '</small></p>'
+        : e.k === 'g'
         ? '<p>' + esc(e.a) + '<small>' + (e.n || 0).toLocaleString('fr-FR') + ' variantes</small></p>'
         : '<p>' + esc(e.a.slice(0, 220)) + '<small>→ ' + esc((e.b || '').slice(0, 220)) + '</small></p>';
-      const IC = e.k === 'g'
+      const IC = e.k === 't'
+        ? '<span class="ic t"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg></span>'
+        : e.k === 'g'
         ? '<span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>'
         : '<span class="ic c"><svg viewBox="0 0 24 24"><path d="M5 5h10M5 9h7M5 13h5"/><path d="M13 17l2.5 2.5L21 13"/></svg></span>';
       return '<li class="hi" style="--d:' + (Math.min(list.indexOf(e), 12) * 45) + 'ms" data-id="' + e.id + '">' + IC + '<time>' + when + (e.k === 'c' ? ' · ' + (e.n || 0) + ' corr.' : '') + '</time>' + body +
@@ -1351,6 +1436,7 @@ if (typeof module !== 'undefined') module.exports = TWFix;
     const id = btn.closest('.hi').dataset.id, all = H.load(), it = all.find(x => x.id === id); if (!it) return;
     if (btn.dataset.a === 'del') { H.save(all.filter(x => x.id !== id)); renderHistory(); toast('Supprimé'); }
     else if (btn.dataset.a === 'copy') copy(it.k === 'g' ? it.a : it.b, 'Copié ✓');
+    else if (it.k === 't') { $('tout').value = it.b || ''; tr.chunks = []; $('tres').hidden = false; $('tbadge').textContent = 'Historique'; showTab('transcrire', true); }
     else if (it.k === 'g') { $('gin').value = it.a; showTab(0, true); $('gform').requestSubmit(); }
     else { cin.value = it.a; showTab(1, true); showResult({ text: it.b, original: it.a, log: [], mode: 'saved', parts: TWFix.diff(it.a, it.b) }); }
   });
@@ -1603,10 +1689,203 @@ if (typeof module !== 'undefined') module.exports = TWFix;
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || '')) ;
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); (curTab === 1 ? $('cgo') : $('gform').querySelector('[type=submit]')).click(); return; }
     if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.key >= '1' && e.key <= '3') showTab(+e.key - 1, true);
+    if (e.key >= '1' && e.key <= '4') showTab(+e.key - 1, true);
     else if (e.key === '/') { e.preventDefault(); showTab(0, true); $('gfilter').focus(); }
     else if (e.key === ',') openSettings();
   });
+
+  /* ================= TRANSCRIPTION AUDIO ================= */
+  const WORKER_SRC = `
+import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+env.allowLocalModels = false;
+let asr = null, cur = null;
+self.onmessage = async (e) => {
+  const { id, model, audio, language } = e.data;
+  try {
+    if (!asr || cur !== model) {
+      asr = null;
+      asr = await pipeline('automatic-speech-recognition', model, { progress_callback: p => self.postMessage({ id, type: 'progress', p }) });
+      cur = model;
+    }
+    self.postMessage({ id, type: 'status' });
+    const out = await asr(audio, { language: language || null, task: 'transcribe', chunk_length_s: 30, stride_length_s: 5, return_timestamps: true });
+    self.postMessage({ id, type: 'done', out });
+  } catch (err) { self.postMessage({ id, type: 'error', message: String((err && err.message) || err) }); }
+};`;
+  const tr = { src: 'mic', eng: SR ? 'instant' : 'whisper', blob: null, name: '', chunks: [], plain: '', worker: null, job: 0, busy: false, stream: null, mr: null, rec2: null, want: false, meter: 0, ac: null, t0: 0, timer: 0, reject: null, url: '' };
+  const fmtT = s => { s = Math.max(0, Math.floor(s)); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+  const langCode = () => ({ fr: 'fr-FR', en: 'en-US' }[$('tlang').value] || navigator.language || 'fr-FR');
+  const langName = () => ({ fr: 'french', en: 'english' }[$('tlang').value] || null);
+
+  function prog(show, msg, pct, err) {
+    $('tprog').hidden = !show; if (!show) return;
+    const bar = $('tprog').querySelector('.bar');
+    bar.classList.toggle('ind', pct == null); $('tbar').style.width = pct == null ? '' : Math.max(2, Math.min(100, pct)) + '%';
+    const m = $('tmsg'); m.textContent = msg || ''; m.classList.toggle('err', !!err);
+  }
+  function refresh() {
+    const mic = tr.src === 'mic', recording = !!(tr.mr || tr.rec2);
+    $('tmicbox').hidden = !mic; $('tfilebox').hidden = mic; $('teng').hidden = !mic;
+    $('tmodel').hidden = mic && tr.eng === 'instant';
+    $('trec').disabled = tr.busy;
+    $('tgo').hidden = !tr.blob || recording || (mic && tr.eng === 'instant'); $('tgo').disabled = tr.busy;
+    $('tcancel').hidden = !tr.busy;
+    $('tplayer').hidden = !tr.blob; $('tinfo').hidden = !tr.blob || mic;
+  }
+  const setTsrc = mseg($('tsrc'), v => { stopRec(); tr.src = v; refresh(); });
+  const setTeng = mseg($('teng'), v => { stopRec(); tr.eng = v; refresh(); });
+
+  function setBlob(blob, name) {
+    tr.blob = blob; tr.name = name;
+    if (tr.url) URL.revokeObjectURL(tr.url);
+    tr.url = URL.createObjectURL(blob); $('tplayer').src = tr.url;
+    $('tinfo').textContent = name + ' · ' + (blob.size / 1048576).toFixed(1) + ' Mo';
+    $('tplayer').onloadedmetadata = () => { if (isFinite($('tplayer').duration)) $('tinfo').textContent = name + ' · ' + fmtT($('tplayer').duration) + ' · ' + (blob.size / 1048576).toFixed(1) + ' Mo'; };
+    prog(false); refresh();
+  }
+  function loadAudio(f) {
+    if (!f) return;
+    if (f.size > 250 * 1048576) { toast('Fichier trop volumineux (250 Mo max)'); return; }
+    setBlob(f, f.name);
+    go(); // import = transcription immédiate
+  }
+  $('tfile').addEventListener('change', e => { loadAudio(e.target.files[0]); e.target.value = ''; });
+  ['dragenter', 'dragover'].forEach(ev => $('tdrop').addEventListener(ev, e => { e.preventDefault(); $('tdrop').classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => $('tdrop').addEventListener(ev, e => { e.preventDefault(); $('tdrop').classList.remove('over'); if (ev === 'drop') loadAudio(e.dataTransfer.files[0]); }));
+
+  /* --- enregistrement / dictée --- */
+  function setRecUi(on) {
+    $('trec').classList.toggle('on', on);
+    $('tstate').textContent = on ? (tr.eng === 'instant' ? 'Je vous écoute… touchez pour arrêter' : 'Enregistrement… touchez pour arrêter') : 'Appuyez pour enregistrer';
+    clearInterval(tr.timer);
+    if (on) { tr.t0 = Date.now(); $('ttime').textContent = '00:00'; tr.timer = setInterval(() => { $('ttime').textContent = fmtT((Date.now() - tr.t0) / 1000); }, 250); }
+    refresh();
+  }
+  function startMeter(stream) {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext; tr.ac = new AC();
+      const an = tr.ac.createAnalyser(); an.fftSize = 512; tr.ac.createMediaStreamSource(stream).connect(an);
+      const d = new Uint8Array(an.fftSize);
+      (function loop() { an.getByteTimeDomainData(d); let s = 0; for (const v of d) { const x = (v - 128) / 128; s += x * x; } $('trec').style.setProperty('--lv', Math.min(1, Math.sqrt(s / d.length) * 5).toFixed(2)); tr.meter = requestAnimationFrame(loop); })();
+    } catch (_) {}
+  }
+  function endMeter() { cancelAnimationFrame(tr.meter); $('trec').style.setProperty('--lv', 0); if (tr.ac) { try { tr.ac.close(); } catch (_) {} tr.ac = null; } }
+  function stopRec() {
+    tr.want = false;
+    if (tr.mr && tr.mr.state !== 'inactive') tr.mr.stop();
+    if (tr.rec2) { try { tr.rec2.stop(); } catch (_) {} }
+  }
+  function showResult2(badge) { $('tres').hidden = false; $('tbadge').textContent = badge || ''; }
+  function startInstant() {
+    if (!SR) { toast('Non pris en charge ici : choisissez « Précis »'); return; }
+    const r = new SR(); r.lang = langCode(); r.continuous = true; r.interimResults = true;
+    let fin = $('tout').value; tr.chunks = []; tr.want = true; showResult2('Instantané');
+    r.onresult = e => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) fin += (fin && !/\s$/.test(fin) ? ' ' : '') + t.trim(); else interim += t;
+      }
+      $('tout').value = fin + (interim ? (fin ? ' ' : '') + interim : '');
+    };
+    r.onerror = e => { if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { tr.want = false; toast('Micro refusé ou indisponible'); } };
+    r.onend = () => {
+      if (tr.want) { try { r.start(); return; } catch (_) {} }
+      tr.rec2 = null; $('tout').value = fin; setRecUi(false);
+      if (fin.trim()) H.add({ k: 't', a: 'Dictée instantanée', b: fin.trim(), n: 0 });
+    };
+    tr.rec2 = r; try { r.start(); setRecUi(true); } catch (_) { tr.rec2 = null; toast('Micro indisponible'); }
+  }
+  async function startRec() {
+    if (tr.eng === 'instant') return startInstant();
+    if (!navigator.mediaDevices || !window.MediaRecorder) { toast('Enregistrement non pris en charge par ce navigateur'); return; }
+    try { tr.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); }
+    catch (e) { toast('Micro indisponible ou refusé'); return; }
+    const mt = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus'].find(t => MediaRecorder.isTypeSupported(t));
+    const parts = [];
+    const mr = new MediaRecorder(tr.stream, mt ? { mimeType: mt } : undefined); tr.mr = mr;
+    mr.ondataavailable = e => { if (e.data && e.data.size) parts.push(e.data); };
+    mr.onstop = () => {
+      endMeter(); tr.stream.getTracks().forEach(t => t.stop()); tr.mr = null; setRecUi(false);
+      if (parts.length) { setBlob(new Blob(parts, { type: mr.mimeType || mt || 'audio/webm' }), 'Enregistrement micro'); go(); }
+    };
+    mr.start(500); startMeter(tr.stream); setRecUi(true);
+  }
+  $('trec').addEventListener('click', () => { if (tr.busy) return; (tr.mr || tr.rec2) ? stopRec() : startRec(); });
+
+  /* --- décodage audio -> mono 16 kHz --- */
+  async function toMono16k(buf) {
+    const AC = window.AudioContext || window.webkitAudioContext, ac = new AC();
+    let dec; try { dec = await ac.decodeAudioData(buf.slice(0)); } finally { try { ac.close(); } catch (_) {} }
+    const off = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, Math.max(1, Math.ceil(dec.duration * 16000)), 16000);
+    const src = off.createBufferSource(); src.buffer = dec; src.connect(off.destination); src.start();
+    return (await off.startRendering()).getChannelData(0).slice(); // copie : buffer transférable au worker
+  }
+  /* --- Whisper dans un worker --- */
+  function getWorker() {
+    if (tr.worker) return tr.worker;
+    tr.worker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' })), { type: 'module' });
+    return tr.worker;
+  }
+  function runWhisper(model, audio, language) {
+    return new Promise((res, rej) => {
+      const w = getWorker(), id = ++tr.job, files = {};
+      const done = () => { w.removeEventListener('message', onm); w.removeEventListener('error', one); tr.reject = null; };
+      const onm = e => {
+        const d = e.data; if (d.id !== id) return;
+        if (d.type === 'progress') {
+          const p = d.p || {};
+          if (p.status === 'progress' && p.total) { files[p.file] = { l: p.loaded, t: p.total }; let l = 0, t = 0; for (const k in files) { l += files[k].l; t += files[k].t; } const pc = l / t * 100; prog(true, 'Téléchargement du modèle (une seule fois)… ' + Math.round(pc) + ' %', pc); }
+          else if (p.status === 'ready') prog(true, 'Chargement du modèle…', null);
+        } else if (d.type === 'status') prog(true, 'Transcription en cours… (selon la durée, cela peut prendre un moment)', null);
+        else if (d.type === 'done') { done(); res(d.out); }
+        else if (d.type === 'error') { done(); rej(new Error(d.message)); }
+      };
+      const one = e => { done(); try { w.terminate(); } catch (_) {} tr.worker = null; rej(new Error(e.message || 'Impossible de charger le moteur')); };
+      tr.reject = err => { done(); try { w.terminate(); } catch (_) {} tr.worker = null; rej(err); };
+      w.addEventListener('message', onm); w.addEventListener('error', one);
+      prog(true, 'Préparation du moteur…', null);
+      w.postMessage({ id, model, audio, language }, [audio.buffer]);
+    });
+  }
+  const friendly = m => /annul/i.test(m) ? 'Transcription annulée.'
+    : /decode|EncodingError|unable to decode/i.test(m) ? 'Format audio non reconnu par ce navigateur.'
+    : /fetch|network|import|module|load|Impossible de charger|Failed/i.test(m) ? 'Moteur indisponible : une connexion est nécessaire la première fois pour le télécharger.'
+    : m;
+  function renderTr() {
+    $('tout').value = $('tts').checked && tr.chunks.length ? tr.chunks.map(c => '[' + fmtT(c.s) + '] ' + c.t).join('\n') : tr.plain;
+  }
+  async function go() {
+    if (tr.busy || !tr.blob) return;
+    tr.busy = true; refresh(); prog(true, 'Décodage de l’audio…', null);
+    try {
+      const audio = await toMono16k(await tr.blob.arrayBuffer());
+      if (audio.length < 3200) throw new Error('Audio trop court ou vide.');
+      const model = $('tmodel').value;
+      const out = await runWhisper(model, audio, langName());
+      tr.chunks = (out.chunks || []).map(c => ({ s: c.timestamp[0] || 0, e: c.timestamp[1] == null ? (c.timestamp[0] || 0) + 2 : c.timestamp[1], t: String(c.text || '').trim() })).filter(c => c.t);
+      tr.plain = String(out.text || '').trim();
+      showResult2('Whisper · ' + model.split('/')[1].replace('whisper-', ''));
+      renderTr(); prog(false);
+      H.add({ k: 't', a: tr.name, b: tr.plain, n: tr.chunks.length });
+      toast('Transcription terminée'); $('tres').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      prog(true, friendly(String(err && err.message || err)), 0, true);
+    } finally { tr.busy = false; refresh(); }
+  }
+  $('tgo').addEventListener('click', go);
+  $('tcancel').addEventListener('click', () => { if (tr.reject) tr.reject(new Error('Annulé')); });
+  $('tts').addEventListener('change', renderTr);
+  $('tcopy').addEventListener('click', () => copy($('tout').value, 'Transcription copiée ✓'));
+  $('tcorr').addEventListener('click', () => { cin.value = $('tout').value; store.set('tw.cin', cin.value); cstats(); showTab('corriger', true); toast('Texte envoyé au correcteur'); });
+  $('ttxt').addEventListener('click', () => $('tout').value && download('transcription.txt', $('tout').value, 'text/plain', true));
+  $('tsrt').addEventListener('click', () => {
+    if (!tr.chunks.length) { toast('Pas d’horodatage (mode Précis requis)'); return; }
+    const ts = s => { const ms = Math.round(s * 1000), h = Math.floor(ms / 3600000), m = Math.floor(ms % 3600000 / 60000), x = Math.floor(ms % 60000 / 1000); return [h, m, x].map(n => String(n).padStart(2, '0')).join(':') + ',' + String(ms % 1000).padStart(3, '0'); };
+    download('transcription.srt', tr.chunks.map((c, i) => (i + 1) + '\n' + ts(c.s) + ' --> ' + ts(c.e) + '\n' + c.t + '\n').join('\n'), 'application/x-subrip', true);
+  });
+  $('tclear').addEventListener('click', () => { $('tout').value = ''; tr.chunks = []; tr.plain = ''; $('tres').hidden = true; });
+  $('tout').addEventListener('input', () => { tr.plain = $('tout').value; });
 
   /* ================= INITIALISATION ================= */
   if (!consent()) banner.hidden = false;
@@ -1622,7 +1901,7 @@ if (typeof module !== 'undefined') module.exports = TWFix;
     const p = prefs();
     ['pal', 'anim', 'haptic', 'scroll', 'kb', 'live'].forEach(k => { if (p[k] !== undefined) S[k] = p[k]; });
   }
-  applyPal(S.pal); applyAnim(); setKb(S.kb);
+  applyPal(S.pal); applyAnim(); setKb(S.kb); setTeng(tr.eng); setTsrc('mic'); refresh();
   $('sAnim').checked = S.anim; $('sHaptic').checked = S.haptic; $('sScroll').checked = S.scroll; $('oLive').checked = S.live;
   cstats();
   applyFs();
